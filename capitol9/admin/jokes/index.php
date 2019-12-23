@@ -72,8 +72,6 @@ if (isset($_GET['add']))
   }
 
 
-
-
 if (isset($_POST['action']) and $_POST['action'] == 'Edit')
   {
 	include $_SERVER['DOCUMENT_ROOT'] . '/teste_ijdb/includes/db.inc.php';
