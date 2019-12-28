@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 07:48 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Gazdă: 127.0.0.1
+-- Timp de generare: dec. 28, 2019 la 03:12 PM
+-- Versiune server: 10.4.11-MariaDB
+-- Versiune PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ijdb`
+-- Bază de date: `ijdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author`
+-- Structură tabel pentru tabel `author`
 --
 
 CREATE TABLE `author` (
@@ -36,7 +36,7 @@ CREATE TABLE `author` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `author`
+-- Eliminarea datelor din tabel `author`
 --
 
 INSERT INTO `author` (`id`, `name`, `email`, `password`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `author` (`id`, `name`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `authorrole`
+-- Structură tabel pentru tabel `authorrole`
 --
 
 CREATE TABLE `authorrole` (
@@ -62,7 +62,7 @@ CREATE TABLE `authorrole` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `authorrole`
+-- Eliminarea datelor din tabel `authorrole`
 --
 
 INSERT INTO `authorrole` (`authorid`, `roleid`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `authorrole` (`authorid`, `roleid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Structură tabel pentru tabel `category`
 --
 
 CREATE TABLE `category` (
@@ -89,7 +89,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `category`
+-- Eliminarea datelor din tabel `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
@@ -105,19 +105,33 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `joke`
+-- Structură tabel pentru tabel `filestore`
+--
+
+CREATE TABLE `filestore` (
+  `id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `mimetype` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `filedata` mediumblob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `joke`
 --
 
 CREATE TABLE `joke` (
   `id` int(11) NOT NULL,
-  `joketext` text,
+  `joketext` text DEFAULT NULL,
   `jokedate` date NOT NULL,
   `authorid` int(11) DEFAULT NULL,
   `visible` enum('NO','YES') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `joke`
+-- Eliminarea datelor din tabel `joke`
 --
 
 INSERT INTO `joke` (`id`, `joketext`, `jokedate`, `authorid`, `visible`) VALUES
@@ -133,7 +147,7 @@ INSERT INTO `joke` (`id`, `joketext`, `jokedate`, `authorid`, `visible`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jokecategory`
+-- Structură tabel pentru tabel `jokecategory`
 --
 
 CREATE TABLE `jokecategory` (
@@ -142,7 +156,7 @@ CREATE TABLE `jokecategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jokecategory`
+-- Eliminarea datelor din tabel `jokecategory`
 --
 
 INSERT INTO `jokecategory` (`jokeid`, `categoryid`) VALUES
@@ -169,7 +183,7 @@ INSERT INTO `jokecategory` (`jokeid`, `categoryid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Structură tabel pentru tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -178,7 +192,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `role`
+-- Eliminarea datelor din tabel `role`
 --
 
 INSERT INTO `role` (`id`, `description`) VALUES
@@ -187,63 +201,75 @@ INSERT INTO `role` (`id`, `description`) VALUES
 ('Site Administrator', 'Add, remove, and edit categories');
 
 --
--- Indexes for dumped tables
+-- Indexuri pentru tabele eliminate
 --
 
 --
--- Indexes for table `author`
+-- Indexuri pentru tabele `author`
 --
 ALTER TABLE `author`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `authorrole`
+-- Indexuri pentru tabele `authorrole`
 --
 ALTER TABLE `authorrole`
   ADD PRIMARY KEY (`authorid`,`roleid`);
 
 --
--- Indexes for table `category`
+-- Indexuri pentru tabele `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `joke`
+-- Indexuri pentru tabele `filestore`
+--
+ALTER TABLE `filestore`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `joke`
 --
 ALTER TABLE `joke`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jokecategory`
+-- Indexuri pentru tabele `jokecategory`
 --
 ALTER TABLE `jokecategory`
   ADD PRIMARY KEY (`jokeid`,`categoryid`);
 
 --
--- Indexes for table `role`
+-- Indexuri pentru tabele `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pentru tabele eliminate
 --
 
 --
--- AUTO_INCREMENT for table `author`
+-- AUTO_INCREMENT pentru tabele `author`
 --
 ALTER TABLE `author`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT pentru tabele `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `joke`
+-- AUTO_INCREMENT pentru tabele `filestore`
+--
+ALTER TABLE `filestore`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `joke`
 --
 ALTER TABLE `joke`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
