@@ -7,27 +7,37 @@
 		<title>Log In</title>
 		<meta http-equiv="content-type"
 			content="text/html; charset=utf-8"/>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h1>Log In</h1>
+	
+	<div class="container">
+	<h1>Log In</h1>
 		<p>Please log in to view the page that you requested.</p>
 		<?php if (isset($loginError)): ?>
 			<p><?php echo htmlout($loginError); ?></p>
 		<?php endif; ?>
-	<form action="" method="post">
-		<div>
-			<label for="email">Email: <input type="text" name="email"
-				id="email"/></label>
-		</div>
-		<div>
-		<label for="password">Password: <input type="password"
-			name="password" id="password"/></label>
-		</div>
-		<div>
-			<input type="hidden" name="action" value="login"/>
-			<input type="submit" value="Log in"/>
-		</div>
-	  </form>
-	 <p><a href="..">Return to JMS home</a></p>
+		<form action="" method="post">
+			<div  class="form-group">
+				<label for="email">Email:</label> 
+				<input type="text"  class="form-control" name="email" id="email"/>
+			</div>
+			<div  class="form-group">
+				<label for="password">Password: </label> 
+				<input type="password"  class="form-control" name="password" id="password"/>
+			</div>
+			<div  class="form-group">
+				<input type="hidden" name="action" value="login"/>
+				<input type="submit" class="btn btn-default" value="Log in"/>
+			</div>
+		  </form>
+		  
+		   <p><a href="..">Return to JMS home</a></p>
+	</div>
+	  
+	  
+	
 	</body>
 </html>
